@@ -9,8 +9,10 @@ from os import system
 class Task(object):
     """doc Task herit from GraphNode"""
 
-    def __init__(self, task_name):
+    def __init__(self, task_name, pre = None):
         self.task_name = task_name
+        #pre = [a,b,c]
+        self.pre = pre
         self.run()
 
     def __run(self):
@@ -30,7 +32,18 @@ class Task(object):
         self.__load(conf)
 
 def main():
-    task = Task(sys.argv[1])
+    _temp_task = []
+    if sys.argv[1] == "-c":
+        with open("../test/task.conf") as f:
+            for line in f:
+                if line[0] == "#":
+                    continue
+                else:
+                    _temp_task.append(line.strip().strip("[").strip("]"))
+
+
+    else:
+        task = Task(sys.argv[1])
 
 
 if __name__ == "__main__":
