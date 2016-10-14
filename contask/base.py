@@ -9,8 +9,10 @@ from os import system
 class Task(object):
     """doc Task herit from GraphNode"""
 
-    def __init__(self, task_name, pre = None):
+    def __init__(self, task_name, _pre = None, _next = None):
         self.task_name = task_name
+        self._pre = _pre
+        self._next = _next
         #pre = [a,b,c]
         self.pre = pre
         self.run()
@@ -30,6 +32,25 @@ class Task(object):
 
     def conf(self,conf):
         self.__load(conf)
+
+class TaskGraph(object):
+
+    def __init__(self):
+        """
+            you should add task node in the list,
+            and you can use other Persistent-List
+        """
+        self.graph = []
+
+    def add_node(self, node):
+        """
+
+        """
+        if isinstance(node, Task) == False:
+            import pprint; pprint.pprint("You should add Task-instance ")
+
+
+
 
 def main():
     _temp_task = []
