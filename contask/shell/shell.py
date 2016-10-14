@@ -3,8 +3,11 @@
 
 import os
 import sys
+from constants import *
 import shlex
-#  from funct import *
+from loop_process import disp_cmd
+
+from funct import *
 
 func_map_cmd = {}
 
@@ -18,12 +21,17 @@ def ini(cmd_name_list = [], func_name_list = []):
     if cmd_name_list == [] or func_name_list == [] :
         return
 
-def test(filename):
+def test_one(filename):
     body = file(filename, 'rt').read()
     __lex = shlex.shlex(body)
     for x in __lex:
         print x,"\n"
     #  print repr(body)
 
+def test_two():
+    while True:
+        cmd_get = sys.stdin.readline()
+        disp_cmd()
+
 if __name__ == "__main__":
-    test("test.txt")
+    pass
