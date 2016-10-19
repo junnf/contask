@@ -3,6 +3,8 @@
 
 import os
 import sys
+import signal
+
 from constants import *
 import shlex
 from loop_process import disp_cmd
@@ -10,6 +12,9 @@ from loop_process import disp_cmd
 from funct import *
 
 func_map_cmd = {}
+
+def pass_signal(arg):
+    pass
 
 def add_map(cmd_name, func_name):
     """
@@ -29,9 +34,10 @@ def test_one(filename):
     #  print repr(body)
 
 def test_two():
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
     while True:
         cmd_get = sys.stdin.readline()
         disp_cmd()
 
 if __name__ == "__main__":
-    pass
+    test_two()
